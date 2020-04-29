@@ -10,13 +10,14 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { from } from 'rxjs';
 import { RequestInterceptor } from './request.interceptor';
-
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    DynamicFormComponent
   ],
   imports: [
     BrowserModule,
