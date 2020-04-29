@@ -18,6 +18,10 @@ rootUrl = "http://localhost:3000/api/";
     return this.http.post(this.rootUrl+'signup',obj);
   }
 
+  data() {
+    return this.http.get(this.rootUrl + 'secured-data');
+  }
+
   validateToken() : Observable<boolean>{
    this.http.get(this.rootUrl+'validation').subscribe(res => {
    let temp:any = res;

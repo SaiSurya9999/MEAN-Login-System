@@ -1,11 +1,14 @@
+//GITHUB PUBLIC REPOSITORY COPY
 //Imports
 const mongoose = require('mongoose');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const path = require('path');
 //Creation of Express App
 const app = express();
+const auth = require('../backend/security/authGuard');
 
 //Connecting to Mongoose (Place your MongoDB connection string here)
 mongoose.connect('YOUR MONGO DB CONNECTION STRING PASTE IT HERE', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
@@ -126,6 +129,25 @@ app.get('/api/validation', (req, res, next) => {
      });
 });
 
+//Protected API Endpoint
+app.get('/api/secured-data', auth, (req,res) => {
+  res.status(200).json({
+    data: "This is Confidential data from Node Js Protected API Endpoint"
+  });
+}, err => {
+ console.log(err);
+ res.status(401).json({
+   data: "You are not authorized to use this Node Js Protected API Endpoint"
+ });
+});
+
+//Angular App Hosting Production Build
+app.use(express.static(__dirname + '/dist/login'));
+
+// For all GET requests, send back index.html (PathLocationStrategy) (Refresh Error)
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, '/dist/login/index.html'));
+});
 
 app.use('/*', (req, res, next) => {
   res.status(400).json({
