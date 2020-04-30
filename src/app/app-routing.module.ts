@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './auth.guard';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,9 @@ const routes: Routes = [
 },
 {
   path: 'dynamicForm', component: DynamicFormComponent
+},
+{
+  path: 'datePicker', component: DatePickerComponent
 },
 {
   path: '**', pathMatch: 'full', redirectTo: '/login'
